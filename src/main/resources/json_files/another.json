@@ -1,0 +1,47 @@
+[
+  {
+    "title": "A Song of Ice and Fire: A Game of Thrones",
+    "author": {
+      "first_name": "George",
+      "last_name": "Martin"
+    },
+    "year_published": 1996,
+    "genre": ["FANTASY", "EPIC"]
+  },
+  {
+    "title": "A Song of Ice and Fire: A Clash of Kings",
+    "author": {
+      "first_name": "George",
+      "last_name": "Martin"
+    },
+    "year_published": 1998,
+    "genre": ["FANTASY", "EPIC"]
+  },
+  {
+    "title": "The Shining",
+    "author": {
+      "first_name": "Stephen",
+      "last_name": "King"
+    },
+    "year_published": 1977,
+    "genre": ["HORROR", "PSYCHOLOGICAL"]
+  },
+  {
+    "title": "It",
+    "author": {
+      "first_name": "Stephen",
+      "last_name": "King"
+    },
+    "year_published": 1986,
+    "genre": ["HORROR", "THRILLER"]
+  },
+  {
+    "title": "Harry Potter and the Philosopher's Stone",
+    "author": {
+      "first_name": "J.K.",
+      "last_name": "Rowling"
+    },
+    "year_published": 1997,
+    "genre": ["FANTASY", "FOR_CHILDREN"]
+  }
+]

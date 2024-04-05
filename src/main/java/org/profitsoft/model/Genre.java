@@ -5,9 +5,16 @@ package org.profitsoft.model;
  * Date: 04.04.2024
  */
 public enum Genre {
+    FANTASY,
+    EPIC,
+    HORROR,
+    PSYCHOLOGICAL,
+    THRILLER,
+    CHILDREN,
+    DYSTOPIAN,
+    POLITICAL_FICTION,
     ROMANCE,
     SATIRE,
     TRAGEDY,
-    DYSTOPIAN,
-    POLITICAL_FICTION
+    FOR_CHILDREN
 }

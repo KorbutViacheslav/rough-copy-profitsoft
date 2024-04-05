@@ -13,13 +13,8 @@ import java.util.List;
  */
 public class App {
     public static void main(String[] args) {
-        List<Book> bookList = JSONFileParser.parseBookFromFile("src/main/resources/json_files/books.json");
+        List<Book> bookList = JSONFileParser.getAllFiles("src/main/resources/json_files/");
         bookList.forEach(System.out::println);
-
-
-
-
-
 
 
 //Training with object converting from JSON and back
