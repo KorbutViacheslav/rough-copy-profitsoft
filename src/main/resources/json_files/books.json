@@ -6,7 +6,7 @@
       "last_name": "Orwell"
     },
     "year_published": 1949,
-    "genre": ["Dystopian", "Political Fiction"]
+    "genre": ["DYSTOPIAN", "POLITICAL_FICTION"]
   },
   {
     "title": "Pride and Prejudice",
@@ -15,7 +15,7 @@
       "last_name": "Austen"
     },
     "year_published": 1813,
-    "genre": ["Romance", "Satire"]
+    "genre": ["ROMANCE", "SATIRE"]
   },
   {
     "title": "Romeo and Juliet",
@@ -24,6 +24,6 @@
       "last_name": "Shakespeare"
     },
     "year_published": 1597,
-    "genre": ["Romance", "Tragedy"]
+    "genre": ["ROMANCE", "TRAGEDY"]
   }
 ]
