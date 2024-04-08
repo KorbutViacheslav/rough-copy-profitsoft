@@ -46,7 +46,7 @@ public class StatisticsCalculator {
     }
 
     //Another method to get statistic. This method I used .compute() to add title and count.
-    public static Map<String, Integer> getStatistics(String attribute, List<Book> bookList) {
+    /*public static Map<String, Integer> getStatistics(String attribute, List<Book> bookList) {
         Map<String, Integer> statistics = new HashMap<>();
 
         for (Book book : bookList) {
@@ -64,5 +64,5 @@ public class StatisticsCalculator {
         }
 
         return statistics;
-    }
+    }*/
 }

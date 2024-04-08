@@ -6,7 +6,12 @@ import org.profitsoft.model.Book;
 import org.profitsoft.model.Genre;
 import org.profitsoft.service.JSONFileParser;
 import org.profitsoft.service.StatisticsCalculator;
+import org.profitsoft.service.XmlWriter;
+import org.profitsoft.util.DirectoryUtil;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -21,8 +26,24 @@ public class App {
         //bookList.forEach(System.out::println);
 
         // StatisticsCalculator back map of attribute and count from book list
-        Map<String, Integer> stringIntegerMap = StatisticsCalculator.getStatistic("genre", bookList);
-        stringIntegerMap.entrySet().forEach(System.out::println);
+        Map<String, Integer> stringIntegerMap = StatisticsCalculator.getStatistic("author", bookList);
+        //stringIntegerMap.entrySet().forEach(System.out::println);
+
+        //Write XML file with statistic from StatisticsCalculator
+        XmlWriter.writeXMLFile(stringIntegerMap,"author");
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //Training with object converting from JSON and back
