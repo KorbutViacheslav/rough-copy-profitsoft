@@ -5,16 +5,24 @@ import org.profitsoft.model.Author;
 import org.profitsoft.model.Book;
 import org.profitsoft.model.Genre;
 import org.profitsoft.service.JSONFileParser;
+import org.profitsoft.service.StatisticsCalculator;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Hello world!
  */
 public class App {
     public static void main(String[] args) {
+
+        // JSONFileParser back list of book from JSON files in path
         List<Book> bookList = JSONFileParser.getAllFiles("src/main/resources/json_files/");
-        bookList.forEach(System.out::println);
+        //bookList.forEach(System.out::println);
+
+        // StatisticsCalculator back map of attribute and count from book list
+        Map<String, Integer> stringIntegerMap = StatisticsCalculator.getStatistic("genre", bookList);
+        stringIntegerMap.entrySet().forEach(System.out::println);
 
 
 //Training with object converting from JSON and back

@@ -13,10 +13,14 @@ import java.util.List;
 @ToString
 @Data
 public class Book {
+
     private String title;
+
     private Author author;
+
     @SerializedName("year_published")
     private Integer yearPublished;
+
     private List<Genre> genre;
 
 }

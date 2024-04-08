@@ -11,8 +11,10 @@ import lombok.ToString;
 @ToString
 @Data
 public class Author {
+
     @SerializedName("first_name")
     private String firstName;
+
     @SerializedName("last_name")
     private String lastName;
 }

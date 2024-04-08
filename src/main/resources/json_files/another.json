@@ -43,5 +43,23 @@
     },
     "year_published": 1997,
     "genre": ["FANTASY", "FOR_CHILDREN"]
+  },
+  {
+    "title": "Harry Potter and the Philosopher's Stone",
+    "author": {
+      "first_name": "J.K.",
+      "last_name": "Rowling"
+    },
+    "year_published": 1997,
+    "genre": ["FANTASY", "FOR_CHILDREN"]
+  },
+  {
+    "title": "Harry Potter and the Philosopher's Stone",
+    "author": {
+      "first_name": "J.K.",
+      "last_name": "Rowling"
+    },
+    "year_published": 1997,
+    "genre": ["FANTASY", "FOR_CHILDREN"]
   }
 ]

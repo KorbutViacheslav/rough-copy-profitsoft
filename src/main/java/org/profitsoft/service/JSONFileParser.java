@@ -8,7 +8,6 @@ import org.profitsoft.model.Book;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
@@ -18,8 +17,6 @@ import java.util.stream.Stream;
  * Date: 04.04.2024
  */
 public class JSONFileParser {
-    private final static Gson gson = new Gson();
-
     private JSONFileParser() {
     }
 
@@ -46,6 +43,7 @@ public class JSONFileParser {
     }
 
     private static List<Book> parseBookFromFile(Path path) throws IOException {
+        Gson gson = new Gson();
         List<Book> bookList;
         try (var br = Files.newBufferedReader(path)) {
             bookList = gson.fromJson(br, new TypeToken<List<Book>>() {
