@@ -22,7 +22,7 @@ public class App {
     public static void main(String[] args) {
 
         // JSONFileParser back list of book from JSON files in path
-        List<Book> bookList = JSONFileParser.getAllFiles("src/main/resources/json_files/");
+        List<Book> bookList = JSONFileParser.getAllFiles(DirectoryUtil.PATH_TO_JSON_FILES);
         //bookList.forEach(System.out::println);
 
         // StatisticsCalculator back map of attribute and count from book list
@@ -30,20 +30,7 @@ public class App {
         //stringIntegerMap.entrySet().forEach(System.out::println);
 
         //Write XML file with statistic from StatisticsCalculator
-        XmlWriter.writeXMLFile(stringIntegerMap,"author");
-
-
-
-
-
-
-
-
-
-
-
-
-
+        XmlWriter.writeXMLFile(stringIntegerMap, "author");
 
 
 //Training with object converting from JSON and back

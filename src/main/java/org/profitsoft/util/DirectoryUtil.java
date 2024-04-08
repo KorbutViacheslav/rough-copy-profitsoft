@@ -7,7 +7,8 @@ package org.profitsoft.util;
 public class DirectoryUtil {
     private final static String RESULTS_DIRECTORY = "src/main/resources/statistic_results/";
     private final static String PART_OF_FILE_NAME = "statistics_by_";
-    private final static String TEMPLATE_POSTFIX_XML = "xml";
+    private final static String TEMPLATE_POSTFIX_XML = ".xml";
+    public final static String PATH_TO_JSON_FILES = "src/main/resources/json_files/";
 
     public static String getXMLFileName(String attribute) {
         var stringBuilder = new StringBuilder(RESULTS_DIRECTORY)
@@ -16,5 +17,6 @@ public class DirectoryUtil {
                 .append(TEMPLATE_POSTFIX_XML);
         return stringBuilder.toString();
     }
+
 
 }
