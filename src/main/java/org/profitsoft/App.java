@@ -16,7 +16,7 @@ public class App {
     public static void main(String[] args) {
 
         // JSONFileParser back list of book from JSON files in path
-        List<Book> bookList = JSONFileParser.getAllFiles(StatisticsFileUtil.PATH_TO_JSON_FILES);
+        List<Book> bookList = JSONFileParser.parseBooksFromFolder(StatisticsFileUtil.PATH_TO_JSON_FILES);
         //bookList.forEach(System.out::println);
 
         // StatisticsCalculator back map of attribute and count from book list
