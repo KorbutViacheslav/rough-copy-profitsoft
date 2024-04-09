@@ -15,10 +15,10 @@ import java.util.concurrent.Executors;
 
 /**
  * EN: Utility class for parsing JSON files containing information about books.
- * UA: Утилітарний клас для парсингу JSON файлів, що містять інформацію про книги.
+ * Provides method for asynchronously parsing JSON files in a specified folder.
  * <p>
- * EN: Provides method for asynchronously parsing JSON files in a specified folder.
- * UA: Надає метод для асинхронного парсингу JSON файлів у вказаній папці.
+ * UA: Утилітарний клас для парсингу JSON файлів, що містять інформацію про книги.
+ * Надає метод для асинхронного парсингу JSON файлів у вказаній папці.
  * <p>
  * Author: Viacheslav Korbut
  * Date: 04.04.2024
@@ -32,26 +32,24 @@ public class JSONFileParser {
 
     /**
      * EN: Private constructor to prevent instantiation of the JSONFileParser class.
-     * UA: Приватний конструктор для запобігання створення екземпляра класу JSONFileParser.
+     * This class is designed as a utility class with only static methods.
      * <p>
-     * EN: This class is designed as a utility class with only static methods.
-     * UA: Цей клас розроблений як утилітарний клас і містить лише статичні методи.
+     * UA: Приватний конструктор для запобігання створення екземпляра класу JSONFileParser.
+     * Цей клас розроблений як утилітарний клас і містить лише статичні методи.
      */
     private JSONFileParser() {
     }
 
     /**
      * EN: Parses all JSON files containing information about books in the specified folder asynchronously.
+     * @param folderPath The path to the folder containing JSON files.
+     * @return A list of books parsed from the JSON files.
+     * @throws RuntimeException if an error occurs while reading the folder or parsing the files.
+     *
      * UA: Парсить всі JSON файли, які містять інформацію про книги, у вказаній папці асинхронно.
-     * <p>
-     * EN: @param folderPath The path to the folder containing JSON files.
-     * UA: @param folderPath Шлях до папки з JSON файлами.
-     * <p>
-     * EN: @return A list of books parsed from the JSON files.
-     * UA: @return Список книг, які були розібрані з JSON файлів.
-     * <p>
-     * EN: @throws RuntimeException if an error occurs while reading the folder or parsing the files.
-     * UA: @throws RuntimeException у разі помилки читання папки або парсингу файлів.
+     * @param folderPath Шлях до папки з JSON файлами.
+     * @return Список книг, які були розібрані з JSON файлів.
+     * @throws RuntimeException у разі помилки читання папки або парсингу файлів.
      */
     public static List<Book> parseBooksFromFolder(String folderPath) {
         //EN: Initialize a fixed thread pool executor with a specified number of threads
@@ -88,16 +86,14 @@ public class JSONFileParser {
 
     /**
      * EN: Asynchronously parses a JSON file containing information about books.
+     * @param path The path to the JSON file.
+     * @param executor The executor object to use for asynchronous execution.
+     * @return A CompletableFuture representing the parsing operation.
+     *
      * UA: Асинхронно розбирає JSON файл, який містить інформацію про книги.
-     * <p>
-     * EN: @param path The path to the JSON file.
-     * UA: @param path Шлях до JSON файлу.
-     * <p>
-     * EN: @param executor The executor object to use for asynchronous execution.
-     * UA: @param executor Об'єкт виконавця для асинхронного виконання.
-     * <p>
-     * EN: @return A CompletableFuture representing the parsing operation.
-     * UA: @return CompletableFuture, який представляє операцію розбору.
+     * @param path Шлях до JSON файлу.
+     * @param executor Об'єкт виконавця для асинхронного виконання.
+     * @return CompletableFuture, який представляє операцію розбору.
      */
     private static CompletableFuture<List<Book>> parseJsonFilesAsync(Path path, Executor executor) {
         return CompletableFuture.supplyAsync(() -> parseBookFromFile(path), executor);
@@ -105,13 +101,12 @@ public class JSONFileParser {
 
     /**
      * EN: Parses a JSON file containing information about books synchronously.
+     * @param path The path to the JSON file.
+     * @return A list of books parsed from the JSON file.
+     *
      * UA: Синхронно розбирає JSON файл, який містить інформацію про книги.
-     * <p>
-     * EN: @param path The path to the JSON file.
-     * UA: @param path Шлях до JSON файлу.
-     * <p>
-     * EN: @return A list of books parsed from the JSON file.
-     * UA: @return Список книг, які були розібрані з JSON файлу.
+     * @param path Шлях до JSON файлу.
+     * @return Список книг, які були розібрані з JSON файлу.
      */
     private static List<Book> parseBookFromFile(Path path) {
         //EN: Deserialize the JSON content of the file into a list of books using Gson library
@@ -131,13 +126,12 @@ public class JSONFileParser {
 
     /**
      * EN: Checks whether the given path represents a JSON file based on its extension.
+     * @param path The path to check.
+     * @return {@code true} if the file represented by the path has a ".json" extension, {@code false} otherwise.
+     *
      * UA: Перевіряє, чи представляє вказаний шлях JSON файл за його розширенням.
-     * <p>
-     * EN: @param path The path to check.
-     * UA: @param path Шлях для перевірки.
-     * <p>
-     * EN: @return {@code true} if the file represented by the path has a ".json" extension, {@code false} otherwise.
-     * UA: @return {@code true}, якщо файл, що представляється шляхом, має розширення ".json", {@code false} в іншому випадку.
+     * @param path Шлях для перевірки.
+     * @return {@code true}, якщо файл, що представляється шляхом, має розширення ".json", {@code false} в іншому випадку.
      */
     private static boolean isJSONFile(Path path) {
         return path.getFileName().toString().endsWith(".json");

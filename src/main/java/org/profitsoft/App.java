@@ -26,22 +26,5 @@ public class App {
         //Write XML file with statistic from StatisticsCalculator
         XmlWriter.writeXMLFile(stringIntegerMap, "author");
 
-
-//Training with object converting from JSON and back
-        /*Book book = new Book();
-        Author author = new Author();
-        author.setFirstName("Slava");
-        author.setLastName("Kor");
-        book.setTitle("New book");
-        book.setAuthor(author);
-        book.setYearPublished(2024);
-        List<Genre> genreList = List.of(Genre.ROMANCE,Genre.POLITICAL_FICTION);
-        book.setGenre(genreList);
-
-        Gson gson =new Gson();
-        String s = gson.toJson(book);
-        System.out.println(s);
-        Book book1 = gson.fromJson(s, Book.class);
-        System.out.println(book1);*/
     }
 }
