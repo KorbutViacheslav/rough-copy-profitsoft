@@ -1,17 +1,11 @@
 package org.profitsoft;
 
-import com.google.gson.Gson;
-import org.profitsoft.model.Author;
 import org.profitsoft.model.Book;
-import org.profitsoft.model.Genre;
 import org.profitsoft.service.JSONFileParser;
 import org.profitsoft.service.StatisticsCalculator;
 import org.profitsoft.service.XmlWriter;
-import org.profitsoft.util.DirectoryUtil;
+import org.profitsoft.util.StatisticsFileUtil;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -22,7 +16,7 @@ public class App {
     public static void main(String[] args) {
 
         // JSONFileParser back list of book from JSON files in path
-        List<Book> bookList = JSONFileParser.getAllFiles(DirectoryUtil.PATH_TO_JSON_FILES);
+        List<Book> bookList = JSONFileParser.getAllFiles(StatisticsFileUtil.PATH_TO_JSON_FILES);
         //bookList.forEach(System.out::println);
 
         // StatisticsCalculator back map of attribute and count from book list

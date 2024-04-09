@@ -10,7 +10,6 @@ import java.util.List;
  * Author: Viacheslav Korbut
  * Date: 04.04.2024
  */
-@ToString
 @Data
 public class Book {
 

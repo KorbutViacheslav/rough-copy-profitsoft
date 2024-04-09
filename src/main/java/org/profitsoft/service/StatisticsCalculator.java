@@ -3,10 +3,8 @@ package org.profitsoft.service;
 import org.profitsoft.model.Book;
 import org.profitsoft.model.Genre;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Author: Viacheslav Korbut
@@ -42,7 +40,10 @@ public class StatisticsCalculator {
             }
         }
 
-        return statistics;
+        return statistics.entrySet().stream()
+                .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+
     }
 
     //Another method to get statistic. This method I used .compute() to add title and count.
