@@ -4,11 +4,12 @@ import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 import lombok.ToString;
 
+import java.util.List;
+
 /**
  * Author: Viacheslav Korbut
  * Date: 04.04.2024
  */
-@ToString
 @Data
 public class Author {
 
@@ -17,4 +18,6 @@ public class Author {
 
     @SerializedName("last_name")
     private String lastName;
+
+    private List<Book> bookList;
 }

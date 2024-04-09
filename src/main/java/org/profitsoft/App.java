@@ -3,15 +3,12 @@ package org.profitsoft;
 import org.profitsoft.model.Book;
 import org.profitsoft.service.JSONFileParser;
 import org.profitsoft.service.StatisticsCalculator;
-import org.profitsoft.service.XmlWriter;
+import org.profitsoft.service.StatisticsXmlWriter;
 import org.profitsoft.util.StatisticsFileNameGenerator;
 
 import java.util.List;
 import java.util.Map;
 
-/**
- * Hello world!
- */
 public class App {
     public static void main(String[] args) {
 
@@ -24,7 +21,7 @@ public class App {
         //stringIntegerMap.entrySet().forEach(System.out::println);
 
         //Write XML file with statistic from StatisticsCalculator
-        XmlWriter.writeXMLFile(stringIntegerMap, "author");
+        StatisticsXmlWriter.writeXMLFile(stringIntegerMap, "author");
 
     }
 }
