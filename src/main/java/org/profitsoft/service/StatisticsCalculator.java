@@ -4,6 +4,9 @@ import org.profitsoft.model.Book;
 import org.profitsoft.model.Genre;
 
 import java.util.*;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
 /**
@@ -45,6 +48,7 @@ public class StatisticsCalculator {
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue, LinkedHashMap::new));
 
     }
+
 
     //Another method to get statistic. This method I used .compute() to add title and count.
     /*public static Map<String, Integer> getStatistics(String attribute, List<Book> bookList) {

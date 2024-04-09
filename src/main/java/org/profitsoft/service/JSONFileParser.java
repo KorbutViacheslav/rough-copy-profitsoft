@@ -8,8 +8,11 @@ import org.profitsoft.model.Book;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.stream.Stream;
 
 /**
@@ -17,39 +20,45 @@ import java.util.stream.Stream;
  * Date: 04.04.2024
  */
 public class JSONFileParser {
+    private static final int NUM_THREADS = 8;
+
     private JSONFileParser() {
     }
 
     public static List<Book> getAllFiles(String folderPath) {
-        List<Book> bookList = new ArrayList<>();
-        try (Stream<Path> pathStream = Files.list(Path.of(folderPath))) {
-            pathStream.forEachOrdered(path -> {
-                try {
-                    if (isJSONFile(path)) {
-                        bookList.addAll(parseBookFromFile(path));
-                    } else {
-                        System.err.println("Not a JSON file: " + path);
-                    }
-                } catch (IOException | JsonSyntaxException e) {
-                    System.err.println("Failed to parse file: " + path);
-                    e.printStackTrace();
-                }
-            });
+        var executor = Executors.newFixedThreadPool(NUM_THREADS);
+        try (var pathStream = getPathStream(folderPath)) {
+            return pathStream
+                    .filter(JSONFileParser::isJSONFile)
+                    .map(path -> JSONFileParser.parseJsonFilesAsync(path, executor))
+                    .map(CompletableFuture::join)
+                    .flatMap(List::stream)
+                    .toList();
         } catch (IOException e) {
-            System.err.println("Failed to read folder: " + folderPath);
-            e.printStackTrace();
+            throw new RuntimeException("Failed to read folder: " + folderPath, e);
+        } finally {
+            executor.shutdown();
         }
-        return bookList;
     }
 
-    private static List<Book> parseBookFromFile(Path path) throws IOException {
+    private static Stream<Path> getPathStream(String folderPath) throws IOException {
+        return Files.list(Path.of(folderPath));
+    }
+
+    private static CompletableFuture<List<Book>> parseJsonFilesAsync(Path path, Executor executor) {
+        return CompletableFuture.supplyAsync(() -> parseBookFromFile(path), executor);
+    }
+
+    private static List<Book> parseBookFromFile(Path path) {
         Gson gson = new Gson();
-        List<Book> bookList;
         try (var br = Files.newBufferedReader(path)) {
-            bookList = gson.fromJson(br, new TypeToken<List<Book>>() {
+            return gson.fromJson(br, new TypeToken<List<Book>>() {
             }.getType());
+        } catch (IOException | JsonSyntaxException e) {
+            System.err.println("Failed to parse file: " + path);
+            e.printStackTrace();
+            return List.of();
         }
-        return bookList;
     }
 
     private static boolean isJSONFile(Path path) {
