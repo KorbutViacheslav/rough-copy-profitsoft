@@ -1,6 +1,6 @@
 package org.profitsoft.service;
 
-import org.profitsoft.util.StatisticsFileUtil;
+import org.profitsoft.util.StatisticsFileNameGenerator;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -18,7 +18,7 @@ public class XmlWriter {
 
     public static void writeXMLFile(Map<String, Integer> statisticMap, String fileName) {
 
-        try (var bufferedWriter = new BufferedWriter(new FileWriter(StatisticsFileUtil.getXMLFileName(fileName)))) {
+        try (var bufferedWriter = new BufferedWriter(new FileWriter(StatisticsFileNameGenerator.getXMLFileName(fileName)))) {
             bufferedWriter.write("<statistics>\n");
             for (Map.Entry<String, Integer> entry : statisticMap.entrySet()) {
                 String attribute = entry.getKey();
