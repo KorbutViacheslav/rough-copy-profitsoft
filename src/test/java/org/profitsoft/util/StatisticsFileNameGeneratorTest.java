@@ -13,9 +13,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class StatisticsFileNameGeneratorTest {
 
     @Test
-    void testGetXMLFileName(){
+    void testGetXMLFileName() {
         String actual = StatisticsFileNameGenerator.getXMLFileName("author");
         String expected = "src/main/resources/statistic_results/statistics_by_author.xml";
-        assertEquals(expected,actual);
+        assertEquals(expected, actual);
     }
+
+    
 }
