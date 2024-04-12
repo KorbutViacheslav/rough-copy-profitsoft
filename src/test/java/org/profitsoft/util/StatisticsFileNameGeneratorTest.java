@@ -1,10 +1,8 @@
 package org.profitsoft.util;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Author: Viacheslav Korbut
@@ -19,5 +17,10 @@ public class StatisticsFileNameGeneratorTest {
         assertEquals(expected, actual);
     }
 
-    
+    @Test
+    void testGetXMLFileNameIfEmptyAttribute() {
+        String expected = "src/main/resources/statistic_results/statistics_by_.xml";
+        String actual = StatisticsFileNameGenerator.getXMLFileName("");
+        assertEquals(expected, actual);
+    }
 }
