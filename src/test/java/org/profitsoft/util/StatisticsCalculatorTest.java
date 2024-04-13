@@ -1,11 +1,10 @@
-package org.profitsoft.service;
+package org.profitsoft.util;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.profitsoft.model.Author;
 import org.profitsoft.model.Book;
 import org.profitsoft.model.Genre;
-import org.profitsoft.util.StatisticsCalculator;
 
 import java.util.Arrays;
 import java.util.List;

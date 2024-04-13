@@ -29,7 +29,7 @@ public class JSONFileParser {
      * EN: The number of threads used for parallel parsing of JSON files.
      * UA: Кількість потоків, що використовуються для паралельного парсингу JSON файлів.
      */
-    private static final int NUM_THREADS = 8;
+    private static final int NUM_THREADS = 12;
 
     private static ExecutorService executor;
 
@@ -143,4 +143,9 @@ public class JSONFileParser {
     public static boolean isExecutorShutdown() {
         return executor == null || executor.isShutdown();
     }
+
+    public static int getNumberThreads(){
+        return NUM_THREADS;
+    }
 }
+
