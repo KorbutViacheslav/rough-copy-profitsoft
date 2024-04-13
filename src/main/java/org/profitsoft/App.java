@@ -2,7 +2,7 @@ package org.profitsoft;
 
 import org.profitsoft.model.Book;
 import org.profitsoft.service.JSONFileParser;
-import org.profitsoft.service.StatisticsCalculator;
+import org.profitsoft.util.StatisticsCalculator;
 import org.profitsoft.service.StatisticsXmlWriter;
 import org.profitsoft.util.StatisticsFileNameGenerator;
 
@@ -21,7 +21,7 @@ public class App {
         //stringIntegerMap.entrySet().forEach(System.out::println);
 
         //Write XML file with statistic from StatisticsCalculator
-        StatisticsXmlWriter.writeXMLFile(stringIntegerMap, "author");
+        //StatisticsXmlWriter.writeXMLFile(stringIntegerMap, "author");
 
     }
 }
