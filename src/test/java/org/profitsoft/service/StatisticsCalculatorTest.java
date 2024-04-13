@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Author: Viacheslav Korbut
@@ -59,6 +60,13 @@ class StatisticsCalculatorTest {
         var statistics = StatisticsCalculator.getStatistic("genre", bookList);
         assertEquals(11, statistics.size());
         assertEquals(3, statistics.get("FANTASY"));
+    }
+
+    @Test
+    void testInvalidAttribute() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            StatisticsCalculator.getStatistic("Invalid attribute", bookList);
+        });
     }
 
 }

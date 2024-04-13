@@ -11,6 +11,7 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
@@ -29,6 +30,8 @@ public class JSONFileParser {
      * UA: Кількість потоків, що використовуються для паралельного парсингу JSON файлів.
      */
     private static final int NUM_THREADS = 8;
+
+    private static ExecutorService executor;
 
     /**
      * EN: Private constructor to prevent instantiation of the JSONFileParser class.
@@ -54,7 +57,7 @@ public class JSONFileParser {
     public static List<Book> parseBooksFromFolder(String folderPath) {
         //EN: Initialize a fixed thread pool executor with a specified number of threads
         //UA: Ініціалізуємо виконавця з фіксованою кількістю потоків
-        var executor = Executors.newFixedThreadPool(NUM_THREADS);
+        executor = Executors.newFixedThreadPool(NUM_THREADS);
 
         try (var pathStream = Files.list(Path.of(folderPath))) {
             return pathStream
@@ -135,5 +138,9 @@ public class JSONFileParser {
      */
     private static boolean isJSONFile(Path path) {
         return path.getFileName().toString().endsWith(".json");
+    }
+
+    public static boolean isExecutorShutdown() {
+        return executor == null || executor.isShutdown();
     }
 }
