@@ -57,7 +57,8 @@ public class StatisticsXmlWriter {
             }
             bufferedWriter.write("</statistics>");
         } catch (IOException e) {
-            throw new RuntimeException("An error occurred while writing the XML file: " + e.getMessage(), e);
+            System.err.println("An error occurred while writing the XML file: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
