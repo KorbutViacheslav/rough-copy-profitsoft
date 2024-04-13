@@ -1,6 +1,7 @@
 package org.profitsoft.util;
 
 import org.profitsoft.model.Book;
+import org.profitsoft.model.Genre;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -50,7 +51,13 @@ public class StatisticsCalculator {
                 case "author" ->
                         statistics.compute(book.getAuthor().getFirstName() + " " + book.getAuthor().getLastName(), (key, value) -> value == null ? 1 : value + 1);
                 case "genre" -> {
-                    book.getGenre().forEach(genre -> statistics.compute(genre.name(), (key, value) -> value == null ? 1 : value + 1));
+                    if (book.getGenre() != null) {
+                        for (Genre genre : book.getGenre()) {
+                            if (genre != null) {
+                                statistics.compute(genre.name(), (key, value) -> value == null ? 1 : value + 1);
+                            }
+                        }
+                    }
                 }
                 default -> throw new IllegalArgumentException("Invalid attribute - " + attribute);
             }

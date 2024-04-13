@@ -5,14 +5,15 @@ import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import org.profitsoft.model.Book;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
+import java.util.stream.Stream;
 
 /**
  * EN: Utility class for parsing JSON files containing information about books.
@@ -29,7 +30,7 @@ public class JSONFileParser {
      * EN: The number of threads used for parallel parsing of JSON files.
      * UA: Кількість потоків, що використовуються для паралельного парсингу JSON файлів.
      */
-    private static final int NUM_THREADS = 12;
+    private static final int NUM_THREADS = 4;
 
     private static ExecutorService executor;
 
@@ -101,6 +102,21 @@ public class JSONFileParser {
     private static CompletableFuture<List<Book>> parseJsonFilesAsync(Path path, Executor executor) {
         return CompletableFuture.supplyAsync(() -> parseBookFromFile(path), executor);
     }
+/*    public static List<Book> parseJSONFile(String path){
+        List<Book> bookList = Collections.synchronizedList(new ArrayList<Book>());
+        executor = new ThreadPoolExecutor(8,8,0L,TimeUnit.MICROSECONDS,new LinkedBlockingDeque<>(), new ThreadPoolExecutor.CallerRunsPolicy());
+try (Stream<Path> pathStream = Files.list(Path.of(path))){
+    pathStream.filter(JSONFileParser::isJSONFile)
+            .forEach(filePath->executor.submit(()->{
+                   bookList.addAll(parseBookFromFile(filePath));
+            }));
+executor.shutdown();
+executor.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
+return bookList;
+} catch (InterruptedException | IOException e) {
+    throw new RuntimeException(e);
+}
+    }*/
 
     /**
      * EN: Parses a JSON file containing information about books synchronously.
