@@ -15,10 +15,11 @@ public class App {
         String attributeForStatistics = args[1];*/
 
         String attribute = "title";
+        String pathToFiles = StatisticsFileNameGenerator.PATH_TO_JSON_FILES;
 
         long startTime = System.currentTimeMillis();
         // JSONFileParser back list of book from JSON files in path
-        List<Book> bookList = JSONFileParser.parseBooksFromFolder(StatisticsFileNameGenerator.PATH_TO_JSON_FILES);
+        List<Book> bookList = JSONFileParser.parseBooksFromFolder(pathToFiles);
 
         // StatisticsCalculator back map of attribute and count from book list
         Map<String, Integer> stringIntegerMap = StatisticsCalculator.getStatistic(attribute, bookList);
